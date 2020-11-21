@@ -3,6 +3,7 @@
 Plugin to create view table in Django.  
 This plugin enable you to create view table in Django model.  
 
+
 ## Support Database
 
 * SQLite3
@@ -26,19 +27,46 @@ INSTALLED_APPS = [
 
 ## Usage
 
-As Django app, you can create tables the below command.  
+### Create model
+
+You need the three step.
+
+* Import `view_table` module
+* Inherit `ViewTable`
+* Impliment `get_query` method
+
+This is a simple example.  
+
+```python
+from django.db import models
+from view_table.models import ViewTable
+
+
+# Base table
+class Book(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
+
+
+# View table
+class Books(ViewTable):
+    category = models.CharField(max_length=100)
+    count = models.IntegerField()
+
+    # You must implement get_query method.
+    @classmethod
+    def get_query(self):
+        return Book.objects.values('category').annotate(count=models.Count('category')).query
+``` 
+
+
+### Run command
+
+After Django migration, you can create view tables the below command.  
 
 ```bash
 python manage.py createviewtable
 ```
-
-This command works as follows. 
-
-* Drop table
-* Create table
-
-So, first of all, you need to migrate your model.  
-
 
 ## License
 
