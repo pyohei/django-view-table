@@ -35,6 +35,9 @@ You need the three step.
 * Inherit `ViewTable`
 * Impliment `get_query` method
 
+The method `get_query` should return select sql statement.  
+You can write sql statement as raw sql or django model object.  
+
 This is a simple example.  
 
 ```python
@@ -57,6 +60,8 @@ class Books(ViewTable):
     @classmethod
     def get_query(self):
         return Book.objects.values('category').annotate(count=models.Count('category')).query
+        # You can also write:
+        # return 'SELECT "polls_book"."category", COUNT("polls_book"."category") AS "count" FROM "polls_book" GROUP BY "polls_book"."category"' 
 ``` 
 
 
