@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='django-view-table',
-    version='0.0.3',
+    version='1.0.0',
     packages=['view_table', 'view_table.management.commands'],
     url='https://github.com/pyohei/django-view-table',
     license='MIT',
