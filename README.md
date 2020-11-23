@@ -73,6 +73,13 @@ After Django migration, you can create view tables the below command.
 python manage.py createviewtable
 ```
 
+## Development
+
+I prepare application for this plugin application.  
+
+* https://github.com/pyohei/django-view-table
+
+
 ## License
 
 MIT
