@@ -8,7 +8,7 @@ This plugin enable you to create view table in Django model.
 
 * SQLite3
 * PostgreSQL
-* (TBC)MySQL
+* MySQL
 * (TBC)Oracle Database
 
 ## Installation & Setup
