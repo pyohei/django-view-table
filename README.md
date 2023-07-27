@@ -20,7 +20,7 @@ After install, you can set your `INSTALLED_APPS`
 
 ```python
 INSTALLED_APPS = [
-    'viewtable',
+    'view_table',
 ]
 ```
 
