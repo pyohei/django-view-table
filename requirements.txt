@@ -2,7 +2,7 @@ asgiref==3.2.10
 bleach==3.3.0
 certifi==2023.7.22
 chardet==3.0.4
-Django==3.2.24
+Django==3.2.25
 docutils==0.16
 entrypoints==0.3
 flake8==3.7.9
