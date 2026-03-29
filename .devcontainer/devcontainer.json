@@ -1,0 +1,20 @@
+{
+  "name": "django-view-table",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "VARIANT": "3.11-bullseye"
+    }
+  },
+  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt && python manage.py check",
+  "forwardPorts": [8000],
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
+}

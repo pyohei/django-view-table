@@ -4,6 +4,7 @@ setup(
     name="django-view-table",
     version="1.0.1",
     packages=["view_table", "view_table.management.commands"],
+    install_requires=["Django>=5.2,<5.3"],
     url="https://github.com/pyohei/django-view-table",
     license="MIT",
     author="Shohei Mukai",
