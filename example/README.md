@@ -17,10 +17,15 @@ python example/manage.py createviewtable
 python example/manage.py runserver
 ```
 
-Then open http://127.0.0.1:8000/. You should see the `Book` rows seeded by
-a data migration, and a `Books` view aggregating them by category via
-`view_table`.
+Then open http://127.0.0.1:8000/. You should see:
 
-If you change `Books.get_query()`, rerun `python example/manage.py
-createviewtable` and reload the page -- the command drops and recreates the
-view every time.
+* `Book` -- the regular table.
+* `Books` -- a view aggregating `Book` by category, with `get_query()`
+  built through the Django ORM query builder.
+* `AuthorPublisherSummary` -- a view backed by a hand-written SQL string
+  joining `Book`, `Author`, and `Publisher` (`INNER JOIN` + `LEFT JOIN` +
+  `GROUP BY`), closer to how view_table tends to be used in practice.
+
+If you change a model's `get_query()`, rerun `python example/manage.py
+createviewtable` and reload the page -- the command drops and recreates
+every view each time.

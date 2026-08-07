@@ -34,5 +34,23 @@
         {% endfor %}
     </table>
     {% endif %}
+
+    <h2>AuthorPublisherSummary (view table backed by raw SQL joins)</h2>
+    {% if view_missing %}
+    <p class="warning">
+        The view does not exist yet. Run <code>python manage.py createviewtable</code> and reload this page.
+    </p>
+    {% else %}
+    <table>
+        <tr><th>Author</th><th>Publisher</th><th>Book count</th></tr>
+        {% for summary in author_publisher_summaries %}
+        <tr>
+            <td>{{ summary.author_name }}</td>
+            <td>{{ summary.publisher_name|default:"(none)" }}</td>
+            <td>{{ summary.book_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 </body>
 </html>
