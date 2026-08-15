@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>django-view-table example</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; margin-bottom: 2rem; }
+        th, td { border: 1px solid #ccc; padding: 0.4rem 0.8rem; text-align: left; }
+        .warning { color: #a00; }
+    </style>
+</head>
+<body>
+    <h1>django-view-table example</h1>
+
+    <h2>Book (regular table)</h2>
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Category</th></tr>
+        {% for book in books %}
+        <tr><td>{{ book.id }}</td><td>{{ book.name }}</td><td>{{ book.category }}</td></tr>
+        {% endfor %}
+    </table>
+
+    <h2>Books (view table)</h2>
+    {% if view_missing %}
+    <p class="warning">
+        The view does not exist yet. Run <code>python manage.py createviewtable</code> and reload this page.
+    </p>
+    {% else %}
+    <table>
+        <tr><th>Category</th><th>Count</th></tr>
+        {% for summary in summaries %}
+        <tr><td>{{ summary.category }}</td><td>{{ summary.count }}</td></tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <h2>AuthorPublisherSummary (view table backed by raw SQL joins)</h2>
+    {% if view_missing %}
+    <p class="warning">
+        The view does not exist yet. Run <code>python manage.py createviewtable</code> and reload this page.
+    </p>
+    {% else %}
+    <table>
+        <tr><th>Author</th><th>Publisher</th><th>Book count</th></tr>
+        {% for summary in author_publisher_summaries %}
+        <tr>
+            <td>{{ summary.author_name }}</td>
+            <td>{{ summary.publisher_name|default:"(none)" }}</td>
+            <td>{{ summary.book_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
